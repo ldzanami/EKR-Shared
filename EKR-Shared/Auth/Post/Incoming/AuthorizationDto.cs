@@ -1,11 +1,6 @@
-﻿using SecureMessageManager.Shared.DTOs.Auxiliary.DeviceInfo;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using EKR_SharedShared.DTOs.Auxiliary.DeviceInfo;
 
-namespace SecureMessageManager.Shared.DTOs.Auth.Post.Incoming
+namespace EKR_SharedShared.DTOs.Auth.Post.Incoming
 {
     /// <summary>
     /// Запрос авторизации.

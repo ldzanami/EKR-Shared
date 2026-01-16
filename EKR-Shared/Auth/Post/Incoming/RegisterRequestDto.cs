@@ -1,7 +1,6 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace SecureMessageManager.Shared.DTOs.Auth.Post.Incoming
+namespace EKR_SharedShared.DTOs.Auth.Post.Incoming
 {
     /// <summary>
     /// Регистрационный запрос.

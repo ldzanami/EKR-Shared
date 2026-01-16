@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SecureMessageManager.Shared.DTOs.Auth.Post.Response
+﻿namespace EKR_SharedShared.DTOs.Auth.Post.Response
 {
     /// <summary>
     /// Ответ на авторизацию.
