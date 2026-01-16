@@ -2,7 +2,14 @@
 
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
+	<PackageId>ldzanami.EKR.Shared</PackageId>
+	<Version>0.1</Version>
+	<Authors>ldzanami</Authors>
+	<Company>ldzanami.EKR</Company>
     <RootNamespace>EKR_Shared</RootNamespace>
+	<Description>Shared DTOs for my diploma project</Description>
+	<PackageTags>shared</PackageTags>
+	<RepositoryUrl>https://github.com/ldzanami/EKR-Shared</RepositoryUrl>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
