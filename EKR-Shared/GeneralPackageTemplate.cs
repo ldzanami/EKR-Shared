@@ -6,6 +6,13 @@
     public class GeneralPackageTemplate
     {
         /// <summary>
+        /// Id запроса.
+        /// </summary>
+        /// <remarks>
+        /// Автозаполняется.
+        /// </remarks>
+        public Guid RequestId { get; set; } = Guid.NewGuid();
+        /// <summary>
         /// Зашифрованный контент пакета.
         /// </summary>
         public byte[] Content { get; set; }

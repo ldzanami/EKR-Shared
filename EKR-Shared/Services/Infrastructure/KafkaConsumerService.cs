@@ -35,11 +35,10 @@ namespace EKR_Shared.Services.Infrastructure
                 {
                     result = consumer.Consume(stoppingToken);
                     using var scope = _factory.CreateScope();
-                    var handler = scope.ServiceProvider.GetRequiredService<IKafkaMessageHandler>();
-                    var message = result.Message.Value;
-                    Log.Information("Received: {Message}", message);
+                    var handler = scope.ServiceProvider.GetRequiredService<IKafkaMessageHandler<string, string>>();
+                    Log.Information("Received: {@Message}", result.Message);
                     consumer.Commit();
-                    await handler.HandleAsync(message, stoppingToken);
+                    await handler.HandleAsync(result.Message, stoppingToken);
                 }
                 catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
                 {

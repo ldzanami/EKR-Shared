@@ -1,7 +1,9 @@
-﻿namespace EKR_Shared.Handlers
+﻿using Confluent.Kafka;
+
+namespace EKR_Shared.Handlers
 {
-    public interface IKafkaMessageHandler
+    public interface IKafkaMessageHandler<TKey, TValue>
     {
-        Task HandleAsync(string message, CancellationToken ct);
+        Task HandleAsync(Message<TKey, TValue> message, CancellationToken ct);
     }
 }

@@ -40,6 +40,11 @@ namespace EKR_Shared.Middlewares
                 Log.Warning(ex, "Not found error");
                 await WriteProblemDetailsAsync(context, HttpStatusCode.Unauthorized, ex.Message);
             }
+            catch (TimeoutException ex)
+            {
+                Log.Warning(ex, "Timeout error");
+                await WriteProblemDetailsAsync(context, HttpStatusCode.Unauthorized, ex.Message);
+            }
             catch (Exception ex)
             {
                 Log.Error(ex, "Unhandled exception");
