@@ -3,15 +3,24 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
 	<PackageId>ldzanami.EKR.Shared</PackageId>
-	<Version>0.1</Version>
+	<Version>0.7.6.4</Version>
 	<Authors>ldzanami</Authors>
 	<Company>ldzanami.EKR</Company>
     <RootNamespace>EKR_Shared</RootNamespace>
-	<Description>Shared DTOs for my diploma project</Description>
+	<Description>Shared objects for my diploma project</Description>
 	<PackageTags>shared</PackageTags>
 	<RepositoryUrl>https://github.com/ldzanami/EKR-Shared</RepositoryUrl>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Confluent.Kafka" Version="2.13.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.3.9" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.3.9" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
+    <PackageReference Include="Serilog" Version="4.3.0" />
+  </ItemGroup>
 
 </Project>

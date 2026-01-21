@@ -1,4 +1,4 @@
-﻿namespace EKR_SharedShared.DTOs.Auth.Post.Response
+﻿namespace EKR_Shared.Auth.Post.Response
 {
     /// <summary>
     /// Ответ на авторизацию.

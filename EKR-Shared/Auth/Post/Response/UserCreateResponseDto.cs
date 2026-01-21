@@ -1,4 +1,4 @@
-﻿namespace EKR_SharedShared.DTOs.Auth.Post.Response
+﻿namespace EKR_Shared.Auth.Post.Response
 {
     /// <summary>
     /// Ответ на регистрацию.
@@ -15,10 +15,5 @@
         /// Имя пользователя.
         /// </summary>
         public string Username { get; set; }
-
-        /// <summary>
-        /// Публичный RSA ключ пользователя.
-        /// </summary>
-        public string PublicKey { get; set; }
     }
 }

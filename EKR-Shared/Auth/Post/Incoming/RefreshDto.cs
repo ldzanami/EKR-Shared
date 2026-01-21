@@ -1,4 +1,4 @@
-﻿namespace EKR_SharedShared.DTOs.Auth.Post.Incoming
+﻿namespace EKR_Shared.Auth.Post.Incoming
 {
     /// <summary>
     /// Ответ на обновление токенов.

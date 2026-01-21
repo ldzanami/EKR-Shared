@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace EKR_SharedShared.DTOs.Auxiliary.DeviceInfo
+namespace EKR_Shared.Auxiliary.DeviceInfo
 {
     /// <summary>
     /// Данные об устройстве.

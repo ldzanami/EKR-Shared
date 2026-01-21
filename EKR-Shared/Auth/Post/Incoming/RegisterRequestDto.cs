@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EKR_SharedShared.DTOs.Auth.Post.Incoming
+namespace EKR_Shared.Auth.Post.Incoming
 {
     /// <summary>
     /// Регистрационный запрос.

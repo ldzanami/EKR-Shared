@@ -1,6 +1,6 @@
-﻿using EKR_SharedShared.DTOs.Auxiliary.DeviceInfo;
+﻿using EKR_Shared.Auxiliary.DeviceInfo;
 
-namespace EKR_SharedShared.DTOs.Auth.Post.Incoming
+namespace EKR_Shared.Auth.Post.Incoming
 {
     /// <summary>
     /// Запрос авторизации.
