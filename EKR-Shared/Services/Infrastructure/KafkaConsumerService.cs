@@ -2,10 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Serilog;
-using EKR_Shared.Handlers;
 using EKR_Shared.Services.Interfaces.Infrastructure;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
+using EKR_Shared.Handlers.Interfaces;
 
 namespace EKR_Shared.Services.Infrastructure
 {
