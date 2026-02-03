@@ -1,4 +1,4 @@
-﻿using EKR_Shared.Auxiliary.DeviceInfo;
+﻿using EKR_Shared.Auxiliary;
 
 namespace EKR_Shared.Auth.Post.Incoming
 {
@@ -18,9 +18,9 @@ namespace EKR_Shared.Auth.Post.Incoming
         public string Password { get; set; }
 
         /// <summary>
-        /// Информация об устройстве.
+        /// Информация о соединении.
         /// </summary>
-        public DeviceInfoDto DeviceInfo { get; set; }
+        public ConnectionInfoDto ConnectionInfo { get; set; }
 
         /// <summary>
         /// Refresh токен.

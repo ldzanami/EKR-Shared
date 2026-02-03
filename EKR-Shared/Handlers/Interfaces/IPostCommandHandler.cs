@@ -1,6 +1,6 @@
 ﻿namespace EKR_Shared.Handlers.Interfaces
 {
-    public interface ICommandHandler
+    public interface IPostCommandHandler
     {
         string CommandType { get; }
         Task<object?> HandleAsync(
