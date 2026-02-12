@@ -9,6 +9,7 @@ namespace EKR_Shared.Services.Encryption
         public string Decrypt(byte[] aesKey, byte[] IV, byte[] content)
         {
             using var aes = Aes.Create();
+            aes.KeySize = 256;
             aes.Key = aesKey;
             aes.IV = IV;
             using var decryptor = aes.CreateDecryptor();
