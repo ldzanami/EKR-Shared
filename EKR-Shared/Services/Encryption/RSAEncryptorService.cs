@@ -17,17 +17,12 @@ namespace EKR_Shared.Services.Encryption
         /// <param name="IV"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public RSADecryptedDto Decrypt(byte[] aesKeyEncr, byte[] IV, byte[] content)
+        public byte[] Decrypt(byte[] content)
         {
             using var rsa = RSA.Create();
             rsa.ImportFromPem(File.ReadAllText("keys/private.pem"));
-            byte[] aesKey = rsa.Decrypt(aesKeyEncr, RSAEncryptionPadding.OaepSHA256);
-            var plain = _AESEncryptorService.Decrypt(aesKey, IV, content);
-            return new RSADecryptedDto
-            {
-                AesKey = aesKey,
-                Content = plain
-            };
+            byte[] plain = rsa.Decrypt(content, RSAEncryptionPadding.OaepSHA256);
+            return plain;
 
         }
 

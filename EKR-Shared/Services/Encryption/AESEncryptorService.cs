@@ -12,6 +12,8 @@ namespace EKR_Shared.Services.Encryption
             aes.KeySize = 256;
             aes.Key = aesKey;
             aes.IV = IV;
+            aes.Mode = CipherMode.CBC;
+            aes.Padding = PaddingMode.PKCS7;
             using var decryptor = aes.CreateDecryptor();
             byte[] plain = decryptor.TransformFinalBlock(content, 0, content.Length);
             return Encoding.UTF8.GetString(plain);

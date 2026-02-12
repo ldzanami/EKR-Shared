@@ -14,7 +14,7 @@ namespace EKR_Shared.Services.Interfaces.Encryption
         /// <param name="IV"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        RSADecryptedDto Decrypt(byte[] aesKeyEncr, byte[] IV, byte[] content);
+        byte[] Decrypt(byte[] content);
         /// <summary>
         /// 
         /// </summary>

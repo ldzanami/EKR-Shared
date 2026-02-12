@@ -15,7 +15,7 @@
         /// <summary>
         /// Зашифрованный контент пакета.
         /// </summary>
-        public byte[] Content { get; set; }
+        public string Content { get; set; }
 
         /// <summary>
         /// Указывает на какой обработчик подавать пакет.
@@ -25,16 +25,16 @@
         /// <summary>
         /// Зашифрованный AES ключ для расшифровки.
         /// </summary>
-        public byte[] AESKey { get; set; }
+        public string AESKey { get; set; }
 
         /// <summary>
         /// Вектор инициализации.
         /// </summary>
-        public byte[] IV { get; set; }
+        public string IV { get; set; }
 
         /// <summary>
         /// Хеш сумма пакета.
         /// </summary>
-        public byte[] Hash { get; set; }
+        public string Hash { get; set; }
     }
 }

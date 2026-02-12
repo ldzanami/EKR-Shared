@@ -4,7 +4,7 @@
     {
         string CommandType { get; }
         Task<object?> HandleAsync(
-            byte[] decryptedContent,
+            string decryptedContent,
             string requestId,
             CancellationToken ct);
     }
