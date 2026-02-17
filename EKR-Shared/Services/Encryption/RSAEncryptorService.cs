@@ -1,6 +1,8 @@
 ﻿using EKR_Shared.Services.Interfaces.Encryption;
 using System.Security.Cryptography;
 using System.Text;
+using EKR_Shared.Exceptions;
+using EKR_Shared.Data;
 
 namespace EKR_Shared.Services.Encryption
 {
@@ -19,11 +21,17 @@ namespace EKR_Shared.Services.Encryption
         /// <returns></returns>
         public byte[] Decrypt(byte[] content)
         {
-            using var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText("keys/private.pem"));
-            byte[] plain = rsa.Decrypt(content, RSAEncryptionPadding.OaepSHA256);
-            return plain;
-
+            try
+            {
+                using var rsa = RSA.Create();
+                rsa.ImportFromPem(File.ReadAllText("keys/private.pem"));
+                byte[] plain = rsa.Decrypt(content, RSAEncryptionPadding.OaepSHA256);
+                return plain;
+            }
+            catch (Exception ex)
+            {
+                throw new ServerSideException(EKRExceptionsText.DecryptError, ex);
+            }
         }
 
         /// <summary>
@@ -33,10 +41,17 @@ namespace EKR_Shared.Services.Encryption
         /// <returns></returns>
         public byte[] Encrypt(string content)
         {
-            using var rsa = RSA.Create();
-            rsa.ImportFromPem(File.ReadAllText("keys/public.pem"));
-            var data = Encoding.UTF8.GetBytes(content);
-            return rsa.Encrypt(data, RSAEncryptionPadding.OaepSHA256);
+            try
+            {
+                using var rsa = RSA.Create();
+                rsa.ImportFromPem(File.ReadAllText("keys/public.pem"));
+                var data = Encoding.UTF8.GetBytes(content);
+                return rsa.Encrypt(data, RSAEncryptionPadding.OaepSHA256);
+            }
+            catch (Exception ex)
+            {
+                throw new ServerSideException(EKRExceptionsText.EncryptError, ex);
+            }
         }
     }
 }

@@ -6,6 +6,8 @@ using EKR_Shared.Services.Interfaces.Infrastructure;
 using System.Text.Json;
 using Microsoft.Extensions.DependencyInjection;
 using EKR_Shared.Handlers.Interfaces;
+using EKR_Shared.Exceptions;
+using EKR_Shared.Data;
 
 namespace EKR_Shared.Services.Infrastructure
 {
@@ -36,14 +38,14 @@ namespace EKR_Shared.Services.Infrastructure
                     result = consumer.Consume(stoppingToken);
                     using var scope = _factory.CreateScope();
                     var handler = scope.ServiceProvider.GetRequiredService<IKafkaMessageHandler<string, string>>();
-                    Log.Information("Received: {@Message}", result.Message);
+                    Log.Information("*ПОЛУЧЕНО СООБЩЕНИЕ*: ID запроса={@Key}, Сообщение={@Value}", result.Message.Key, result.Message.Value);
                     consumer.Commit();
                     await handler.HandleAsync(result.Message, stoppingToken);
                 }
-                catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
+                catch (OperationCanceledException ex) when (stoppingToken.IsCancellationRequested)
                 {
-                    Log.Warning("Operation Canceled");
-                    break;
+                    Log.Warning("*ОПЕРАЦИЯ ОТМЕНЕНА*");
+                    throw new ClientSideException(EKRExceptionsText.OperationCancelled, ex);
                 }
                 catch (Exception ex)
                 {
@@ -51,6 +53,7 @@ namespace EKR_Shared.Services.Infrastructure
                     var producer = scope.ServiceProvider.GetRequiredService<IKafkaProducerService>();
                     Log.Error(ex.Message);
                     await producer.GiveAnswerAsync(JsonSerializer.Serialize(result), topic: "auth-requests-dlq");
+                    throw new ServerSideException(EKRExceptionsText.UnableToProcess, ex);
                 }
             }
 

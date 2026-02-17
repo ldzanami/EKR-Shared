@@ -1,4 +1,6 @@
-﻿namespace EKR_Shared.Services.Interfaces.Helpers
+﻿using System.Text.Json;
+
+namespace EKR_Shared.Services.Interfaces.Helpers
 {
     /// <summary>
     /// Сервис, проверяющий соответствие хеш суммы.
@@ -8,15 +10,15 @@
         /// <summary>
         /// Вычисляет хеш сумму пакета.
         /// </summary>
-        /// <param name="value">Пакет GeneralPackageTemplate без хеша в нём.</param>
+        /// <param name="dto">Пакет GeneralPackageTemplate без хеша в нём.</param>
         /// <returns>Хеш сумма пакета.</returns>
-        string CalculateHash(string value);
+        static abstract string CalculateHash<T>(T dto);
 
         /// <summary>
         /// Асинхронно проверяет соответствие хеш сумм.
         /// </summary>
         /// <param name="packageHash">Хеш сумма пакета с клиента.</param>
         /// <exception cref="BadHttpRequestException"></exception>
-        Task CheckHashAsync(string packageHash);
+        static abstract Task CheckHashAsync<T>(string packageHash, T dto);
     }
 }

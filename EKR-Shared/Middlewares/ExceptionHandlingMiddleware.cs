@@ -39,7 +39,7 @@ namespace EKR_Shared.Middlewares
             catch (Exception ex)
             {
                 Log.Error(ex, "UnexpectedError");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.InternalServerError, new EKRException(ex.Message, ex, "UnexpectedError"));
+                await WriteProblemDetailsAsync(context, HttpStatusCode.InternalServerError, new EKRException(ex.Message, ex));
             }
         }
 

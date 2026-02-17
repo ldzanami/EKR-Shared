@@ -1,13 +1,13 @@
 ﻿using Confluent.Kafka;
 using EKR_Shared.Services.Interfaces.Infrastructure;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters.Internal;
+using EKR_Shared.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json.Linq;
 using Serilog;
 using System.Collections.Concurrent;
 using System.Text;
 using System.Text.Json;
+using EKR_Shared.Data;
 
 namespace EKR_Shared.Services.Infrastructure
 {
@@ -49,11 +49,12 @@ namespace EKR_Shared.Services.Infrastructure
 
                 var result = await producer.ProduceAsync(topic ?? _configuration["Kafka:ProducerTopicName"], message);
 
-                Log.Information("Saved to Kafka. Offset={@Offset}, Content={@Message}", result.Offset, result.Message);
+                Log.Information("*ОТПРАВЛЕНО СООБЩЕНИЕ*. ID запроса={@Key}, Сообщение={@Value}", result.Message.Key, result.Message.Value);
             }
             catch (ProduceException<string, string> ex)
             {
-                Log.Error(ex, "Kafka produce failed");
+                Log.Error(ex, "*ОШИБКА ОТПРАВКИ В KAFKA*");
+                throw new ServerSideException(EKRExceptionsText.ProduceError, ex);
             }
         }
     }

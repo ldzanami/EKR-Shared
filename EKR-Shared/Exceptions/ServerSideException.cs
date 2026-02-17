@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EKR_Shared.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,10 +7,12 @@ namespace EKR_Shared.Exceptions
 {
     public class ServerSideException : EKRException
     {
-        public ServerSideException(string type) : base(type) { }
+        public override string Type => EKRExceptionsText.ServerSideException;
 
-        public ServerSideException(string message, string type) : base(message, type) { }
+        public ServerSideException() : base() { }
 
-        public ServerSideException(string message, Exception inner, string type) : base(message, inner, type) { }
+        public ServerSideException(string message) : base(message) { }
+
+        public ServerSideException(string message, Exception inner) : base(message, inner) { }
     }
 }
