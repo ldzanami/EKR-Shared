@@ -12,13 +12,13 @@ namespace EKR_Shared.Services.Interfaces.Helpers
         /// </summary>
         /// <param name="dto">Пакет GeneralPackageTemplate без хеша в нём.</param>
         /// <returns>Хеш сумма пакета.</returns>
-        static abstract string CalculateHash<T>(T dto);
+        string CalculateHash<T>(T dto);
 
         /// <summary>
         /// Асинхронно проверяет соответствие хеш сумм.
         /// </summary>
         /// <param name="packageHash">Хеш сумма пакета с клиента.</param>
         /// <exception cref="BadHttpRequestException"></exception>
-        static abstract Task CheckHashAsync<T>(string packageHash, T dto);
+        Task CheckHashAsync<T>(string packageHash, T dto);
     }
 }

@@ -17,9 +17,9 @@ namespace EKR_Shared.Exceptions
         public EKRException(string message, Exception inner) : base(message, inner) { }
 
         public override string ToString() => "{\n" +
-                                            $"\tExceptionName: {Type}" +
+                                            $"\tExceptionName: {Type}\n" +
                                             $"\tExceptionText: {Message}\n" +
-                                            $"\tInner: {InnerException?.Message}" +
+                                            $"\tInner: {InnerException?.Message}\n" +
                                              "}";
     }
 }

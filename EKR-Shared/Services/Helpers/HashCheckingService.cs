@@ -11,7 +11,7 @@ namespace EKR_Shared.Services.Helpers
 {
     public class HashCheckingService : IHashCheckingService
     {
-        public static string CalculateHash<T>(T dto)
+        public string CalculateHash<T>(T dto)
         {
             var json = JsonSerializer.Serialize(dto);
 
@@ -25,7 +25,7 @@ namespace EKR_Shared.Services.Helpers
             return Convert.ToHexString(hash).ToLower();
         }
 
-        private static string Normalize(JsonElement element)
+        private string Normalize(JsonElement element)
         {
             return element.ValueKind switch
             {
@@ -35,16 +35,16 @@ namespace EKR_Shared.Services.Helpers
             };
         }
 
-        private static string NormalizeObject(JsonElement obj)
+        private string NormalizeObject(JsonElement obj)
         {
             var props = obj.EnumerateObject()
                            .OrderBy(p => p.Name)
-                           .Select(p => $"\"{p.Name}\":{Normalize(p.Value)}");
+                           .Select(p => $"\"{p.Name}\":\"{Normalize(p.Value)}\"");
 
             return "{" + string.Join(",", props) + "}";
         }
 
-        private static string NormalizeArray(JsonElement array)
+        private string NormalizeArray(JsonElement array)
         {
             var items = array.EnumerateArray()
                              .Select(Normalize);
@@ -52,7 +52,7 @@ namespace EKR_Shared.Services.Helpers
             return "[" + string.Join(",", items) + "]";
         }
 
-        public async static Task CheckHashAsync<T>(string packageHash, T dto)
+        public async Task CheckHashAsync<T>(string packageHash, T dto)
         {
             string hash;
             try
