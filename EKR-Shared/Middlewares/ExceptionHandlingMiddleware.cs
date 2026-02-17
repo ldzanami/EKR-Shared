@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using EKR_Shared.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
@@ -25,34 +26,24 @@ namespace EKR_Shared.Middlewares
             {
                 await _next(context);
             }
-            catch (InvalidOperationException ex)
+            catch (ServerSideException ex)
             {
-                Log.Warning(ex, "Business logic error");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.BadRequest, ex.Message);
+                Log.Warning(ex.ToString());
+                await WriteProblemDetailsAsync(context, HttpStatusCode.InternalServerError, ex);
             }
-            catch (UnauthorizedAccessException ex)
+            catch (ClientSideException ex)
             {
-                Log.Warning(ex, "Unauthorized access");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.Unauthorized, ex.Message);
-            }
-            catch (KeyNotFoundException ex)
-            {
-                Log.Warning(ex, "Not found error");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.Unauthorized, ex.Message);
-            }
-            catch (TimeoutException ex)
-            {
-                Log.Warning(ex, "Timeout error");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.Unauthorized, ex.Message);
+                Log.Warning(ex.ToString());
+                await WriteProblemDetailsAsync(context, HttpStatusCode.BadRequest, ex);
             }
             catch (Exception ex)
             {
-                Log.Error(ex, "Unhandled exception");
-                await WriteProblemDetailsAsync(context, HttpStatusCode.InternalServerError, "Internal Server Error");
+                Log.Error(ex, "UnexpectedError");
+                await WriteProblemDetailsAsync(context, HttpStatusCode.InternalServerError, new EKRException(ex.Message, ex, "UnexpectedError"));
             }
         }
 
-        private static async Task WriteProblemDetailsAsync(HttpContext context, HttpStatusCode statusCode, string message)
+        private static async Task WriteProblemDetailsAsync(HttpContext context, HttpStatusCode statusCode, EKRException ex)
         {
             context.Response.ContentType = "application/problem+json";
             context.Response.StatusCode = (int)statusCode;
@@ -60,8 +51,8 @@ namespace EKR_Shared.Middlewares
             var problem = new ProblemDetails
             {
                 Status = (int)statusCode,
-                Title = message,
-                Detail = statusCode == HttpStatusCode.InternalServerError ? null : message,
+                Title = ex.Type,
+                Detail = ex.ToString(),
                 Instance = context.Request.Path
             };
 

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
 	<PackageId>ldzanami.EKR.Shared</PackageId>
-	<Version>0.9.6</Version>
+	<Version>0.9.7</Version>
 	<Authors>ldzanami</Authors>
 	<Company>ldzanami.EKR</Company>
     <RootNamespace>EKR_Shared</RootNamespace>
@@ -21,6 +21,10 @@
     <PackageReference Include="Microsoft.Extensions.Configuration" Version="10.0.2" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="10.0.2" />
     <PackageReference Include="Serilog" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Services\Helpers\" />
   </ItemGroup>
 
 </Project>

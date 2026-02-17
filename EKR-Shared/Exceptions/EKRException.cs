@@ -21,9 +21,9 @@ namespace EKR_Shared.Exceptions
             Type = type;
         }
 
-        public override string ToString() => "{" +
-            $"\tExceptionName: {Type}" +
-            $"\tExceptionText: {Message}" +
-            "}";
+        public override string ToString() => "{\n" +
+                                            $"\tExceptionName: {Type}" +
+                                            $"\tExceptionText: {Message}\n" +
+                                             "}";
     }
 }
