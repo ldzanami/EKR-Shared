@@ -1,7 +1,4 @@
 ﻿using EKR_Shared.Data;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EKR_Shared.Exceptions
 {

@@ -39,10 +39,10 @@ namespace EKR_Shared.Services.Infrastructure
                     using var scope = _factory.CreateScope();
                     var handler = scope.ServiceProvider.GetRequiredService<IKafkaMessageHandler<string, string>>();
                     Log.Information("*ПОЛУЧЕНО СООБЩЕНИЕ*: ID запроса={@Key}, Сообщение={@Value}", result.Message.Key, result.Message.Value);
-                    consumer.Commit();
                     await handler.HandleAsync(result.Message, stoppingToken);
+                    consumer.Commit();
                 }
-                catch (OperationCanceledException ex) when (stoppingToken.IsCancellationRequested)
+                catch (OperationCanceledException ex) when (ex.CancellationToken == stoppingToken)
                 {
                     Log.Warning("*ОПЕРАЦИЯ ОТМЕНЕНА*");
                     throw new ClientSideException(EKRExceptionsText.OperationCancelled, ex);

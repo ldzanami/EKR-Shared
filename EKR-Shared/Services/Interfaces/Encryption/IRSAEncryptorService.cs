@@ -1,5 +1,4 @@
-﻿using EKR_Shared.Services.Encryption;
-
+﻿
 namespace EKR_Shared.Services.Interfaces.Encryption
 {
     /// <summary>

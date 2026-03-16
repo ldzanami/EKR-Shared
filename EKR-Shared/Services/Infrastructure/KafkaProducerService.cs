@@ -2,11 +2,7 @@
 using EKR_Shared.Services.Interfaces.Infrastructure;
 using EKR_Shared.Exceptions;
 using Microsoft.Extensions.Configuration;
-using Newtonsoft.Json.Linq;
 using Serilog;
-using System.Collections.Concurrent;
-using System.Text;
-using System.Text.Json;
 using EKR_Shared.Data;
 
 namespace EKR_Shared.Services.Infrastructure

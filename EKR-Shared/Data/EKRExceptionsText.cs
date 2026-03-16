@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
+﻿
 namespace EKR_Shared.Data
 {
     public static class EKRExceptionsText

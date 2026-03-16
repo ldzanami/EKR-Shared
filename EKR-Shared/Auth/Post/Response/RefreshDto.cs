@@ -19,5 +19,10 @@
         /// Id сессии.
         /// </summary>
         public Guid SessionId { get; set; }
+
+        /// <summary>
+        /// Имя пользователя.
+        /// </summary>
+        public string Username { get; set; }
     }
 }
