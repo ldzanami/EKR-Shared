@@ -9,8 +9,10 @@ namespace EKR_Shared.Data
         public static string ProduceError => "Ошибка отправки в KAFKA";
         public static string OperationCancelled => "Операция была отменена";
         public static string UnableToProcess => "Невозможно обработать запрос";
-        public static string DecryptError => "Ошибка расшифровки";
-        public static string EncryptError => "Ошибка шифрования";
+        public static string DecryptRSAError => "Ошибка расшифровки RSA";
+        public static string EncryptRSAError => "Ошибка шифрования RSA";
+        public static string DecryptAESError => "Ошибка расшифровки AES";
+        public static string EncryptAESError => "Ошибка шифрования AES";
         public static string WrongHashError => "Hash сумма не совпадает";
         public static string HashCalculateError => "Ошибка вычисления Hash суммы";
 

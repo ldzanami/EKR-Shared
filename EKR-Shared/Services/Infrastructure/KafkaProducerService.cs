@@ -38,10 +38,10 @@ namespace EKR_Shared.Services.Infrastructure
                 using var producer = new ProducerBuilder<string, string>(config).Build();
 
                 Message<string, string> message = new()
-               {
+                {
                     Value = answer,
                     Key = partition
-               };
+                };
 
                 var result = await producer.ProduceAsync(topic ?? _configuration["Kafka:ProducerTopicName"], message);
 

@@ -13,7 +13,7 @@ namespace EKR_Shared.Services.Interfaces.Encryption
         /// <param name="IV"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        byte[] Decrypt(byte[] content);
+        byte[] Decrypt(byte[] content, string keyVersion);
         /// <summary>
         /// 
         /// </summary>

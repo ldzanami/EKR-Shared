@@ -16,9 +16,9 @@
         public Guid UserId { get; set; }
 
         /// <summary>
-        /// Информация об устройстве.
+        /// Информация о подключении
         /// </summary>
-        public string DeviceInfo { get; set; }
+        public string ConnectionInfo { get; set; }
 
         /// <summary>
         /// Дата создания сессии.

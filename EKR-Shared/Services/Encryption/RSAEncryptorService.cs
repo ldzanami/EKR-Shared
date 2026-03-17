@@ -3,6 +3,7 @@ using System.Security.Cryptography;
 using System.Text;
 using EKR_Shared.Exceptions;
 using EKR_Shared.Data;
+using Serilog;
 
 namespace EKR_Shared.Services.Encryption
 {
@@ -19,18 +20,18 @@ namespace EKR_Shared.Services.Encryption
         /// <param name="IV"></param>
         /// <param name="content"></param>
         /// <returns></returns>
-        public byte[] Decrypt(byte[] content)
+        public byte[] Decrypt(byte[] content, string keyVersion)
         {
             try
             {
                 using var rsa = RSA.Create();
-                rsa.ImportFromPem(File.ReadAllText("keys/private.pem"));
+                rsa.ImportFromPem(File.ReadAllText("keys/" + keyVersion + "/private.pem"));
                 byte[] plain = rsa.Decrypt(content, RSAEncryptionPadding.OaepSHA256);
                 return plain;
             }
             catch (Exception ex)
             {
-                throw new ServerSideException(EKRExceptionsText.DecryptError, ex);
+                throw new ServerSideException(EKRExceptionsText.DecryptRSAError, ex);
             }
         }
 
@@ -44,13 +45,13 @@ namespace EKR_Shared.Services.Encryption
             try
             {
                 using var rsa = RSA.Create();
-                rsa.ImportFromPem(File.ReadAllText("keys/public.pem"));
+                rsa.ImportFromPem(File.ReadAllText("keys/current/public.pem"));
                 var data = Encoding.UTF8.GetBytes(content);
                 return rsa.Encrypt(data, RSAEncryptionPadding.OaepSHA256);
             }
             catch (Exception ex)
             {
-                throw new ServerSideException(EKRExceptionsText.EncryptError, ex);
+                throw new ServerSideException(EKRExceptionsText.EncryptRSAError, ex);
             }
         }
     }

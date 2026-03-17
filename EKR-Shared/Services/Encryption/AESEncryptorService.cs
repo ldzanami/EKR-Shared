@@ -24,7 +24,7 @@ namespace EKR_Shared.Services.Encryption
             }
             catch (Exception ex)
             {
-                throw new ServerSideException(EKRExceptionsText.DecryptError, ex);
+                throw new ServerSideException(EKRExceptionsText.DecryptAESError, ex);
             }
         }
 
@@ -44,7 +44,7 @@ namespace EKR_Shared.Services.Encryption
             }
             catch (Exception ex)
             {
-                throw new ServerSideException(EKRExceptionsText.EncryptError, ex);
+                throw new ServerSideException(EKRExceptionsText.EncryptAESError, ex);
             }
         }
     }
