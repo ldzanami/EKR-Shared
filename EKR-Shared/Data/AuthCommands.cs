@@ -10,5 +10,6 @@
         public static string RevokeAll => "revoke-all";
         public static string GetActive => "get-active-sessions";
         public static string GetPublicKey => "get-public-key";
+        public static string KeysRotation => "keys-rotation";
     }
 }

@@ -8,18 +8,17 @@ using Serilog;
 namespace EKR_Shared.Services.Encryption
 {
     /// <summary>
-    /// 
+    /// Сервис для шифрования RSA алгоритмом.
     /// </summary>
-    public class RSAEncryptorService(IAESEncryptorService AESEncryptorService) : IRSAEncryptorService
+    public class RSAEncryptorService : IRSAEncryptorService
     {
-        private readonly IAESEncryptorService _AESEncryptorService = AESEncryptorService;
         /// <summary>
-        /// 
+        /// Метод дешифровки данных алгоритмом RSA.
         /// </summary>
-        /// <param name="aesKeyEncr"></param>
-        /// <param name="IV"></param>
-        /// <param name="content"></param>
-        /// <returns></returns>
+        /// <param name="content">Данные для дешифровки.</param>
+        /// <param name="keyVersion">Версия ключа RSA.</param>
+        /// <returns>Дешифрованные данные.</returns>
+        /// <exception cref="ServerSideException"/>
         public byte[] Decrypt(byte[] content, string keyVersion)
         {
             try
@@ -36,10 +35,11 @@ namespace EKR_Shared.Services.Encryption
         }
 
         /// <summary>
-        /// 
+        /// Метод шифровки данных алгоритмом RSA.
         /// </summary>
-        /// <param name="content"></param>
-        /// <returns></returns>
+        /// <param name="content">Данные для шифровки.</param>
+        /// <returns>Шифрованные данные.</returns>
+        /// <exception cref="ServerSideException"/>
         public byte[] Encrypt(string content)
         {
             try

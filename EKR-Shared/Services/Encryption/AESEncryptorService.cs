@@ -6,8 +6,19 @@ using System.Text;
 
 namespace EKR_Shared.Services.Encryption
 {
+    /// <summary>
+    /// Сервис для шифрования AES алгоритмом.
+    /// </summary>
     public class AESEncryptorService : IAESEncryptorService
     {
+        /// <summary>
+        /// Дешифрует данные AES256-CBC алгоритмом.
+        /// </summary>
+        /// <param name="aesKey">AES256 ключ.</param>
+        /// <param name="IV">Вектор инициализации.</param>
+        /// <param name="content">Данные для дешифровки.</param>
+        /// <returns>Дешифрованные данные.</returns>
+        /// <exception cref="ServerSideException"/>
         public string Decrypt(byte[] aesKey, byte[] IV, byte[] content)
         {
             try
@@ -28,6 +39,14 @@ namespace EKR_Shared.Services.Encryption
             }
         }
 
+        /// <summary>
+        /// Шифрует данные AES256-CBC алгоритмом.
+        /// </summary>
+        /// <param name="aesKey">AES256 ключ.</param>
+        /// <param name="IV">Вектор инициализации.</param>
+        /// <param name="plainText">Данные для шифровки.</param>
+        /// <returns>Шифрованные данные.</returns>
+        /// <exception cref="ServerSideException"/>
         public byte[] Encrypt(string plainText, byte[] aesKey, byte[] IV)
         {
             try
