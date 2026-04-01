@@ -1,5 +1,4 @@
-﻿
-namespace EKR_Shared.Data
+﻿namespace EKR_Shared.Data
 {
     public static class EKRExceptionsText
     {

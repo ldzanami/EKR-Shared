@@ -6,9 +6,9 @@
         /// Асинхронно отправляет ответ.
         /// </summary>
         /// <param name="answer">Ответ от сервиса.</param>
-        /// <param name="partition">Id запроса.</param>
         /// <param name="topic">Выбранный топик.</param>
-        /// <param name="address">Адрес сервера</param>
-        Task GiveAnswerAsync(string answer, string partition = null, string topic = null, string address = null);
+        /// <param name="requestId">Id запроса.</param>
+        /// <param name="address">Адрес сервера Kafka.</param>
+        Task GiveAnswerAsync(string answer, string requestId, string topic = null, string address = null);
     }
 }

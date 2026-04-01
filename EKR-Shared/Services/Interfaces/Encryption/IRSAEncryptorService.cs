@@ -1,5 +1,4 @@
-﻿
-namespace EKR_Shared.Services.Interfaces.Encryption
+﻿namespace EKR_Shared.Services.Interfaces.Encryption
 {
     /// <summary>
     /// 

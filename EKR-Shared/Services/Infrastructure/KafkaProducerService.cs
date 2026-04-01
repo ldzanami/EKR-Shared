@@ -4,6 +4,8 @@ using EKR_Shared.Exceptions;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using EKR_Shared.Data;
+using System.Text.Json;
+using System.Text;
 
 namespace EKR_Shared.Services.Infrastructure
 {
@@ -17,11 +19,11 @@ namespace EKR_Shared.Services.Infrastructure
         /// Асинхронно отправляет ответ.
         /// </summary>
         /// <param name="answer">Ответ от сервиса.</param>
-        /// <param name="partition">Id запроса.</param>
         /// <param name="topic">Выбранный топик.</param>
-        /// <param name="address">Адрес сервера</param>
+        /// <param name="requestId">Id запроса.</param>
+        /// <param name="address">Адрес сервера kafka.</param>
         public async Task GiveAnswerAsync(string answer,
-                                          string partition = null,
+                                          string requestId,
                                           string topic = null,
                                           string address = null)
         {
@@ -40,16 +42,20 @@ namespace EKR_Shared.Services.Infrastructure
                 Message<string, string> message = new()
                 {
                     Value = answer,
-                    Key = partition
+                    Headers = new()
+                    {
+                        { "request-id",  Encoding.UTF8.GetBytes(requestId) },
+                        { "source", Encoding.UTF8.GetBytes(string.Join("-", _configuration["SelfId"]!.Split('-')[..^1])) }
+                    }
                 };
 
                 var result = await producer.ProduceAsync(topic ?? _configuration["Kafka:ProducerTopicName"], message);
 
-                Log.Information("*ОТПРАВЛЕНО СООБЩЕНИЕ*. ID запроса={@Key}, Сообщение={@Value}", result.Message.Key, result.Message.Value);
+                Log.Information("ОТПРАВЛЕНО ВНУТРЕННЕЕ СООБЩЕНИЕ. ID запроса={@Key}, Сообщение={@Value}", result.Message.Key, result.Message.Value);
             }
             catch (ProduceException<string, string> ex)
             {
-                Log.Error(ex, "*ОШИБКА ОТПРАВКИ В KAFKA*");
+                Log.Error(ex, "ОШИБКА ОТПРАВКИ В KAFKA");
                 throw new ServerSideException(EKRExceptionsText.ProduceError, ex);
             }
         }

@@ -8,7 +8,6 @@ namespace EKR_Shared.Handlers.Interfaces
 
         Task<object?> HandleAsync(
             string decryptedContent,
-            string requestId,
             AESEncryptPack AESPack,
             CancellationToken ct);
     }

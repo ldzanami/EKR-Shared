@@ -3,7 +3,6 @@ using System.Security.Cryptography;
 using System.Text;
 using EKR_Shared.Exceptions;
 using EKR_Shared.Data;
-using Serilog;
 
 namespace EKR_Shared.Services.Encryption
 {

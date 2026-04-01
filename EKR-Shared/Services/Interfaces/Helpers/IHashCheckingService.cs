@@ -1,6 +1,4 @@
-﻿using System.Text.Json;
-
-namespace EKR_Shared.Services.Interfaces.Helpers
+﻿namespace EKR_Shared.Services.Interfaces.Helpers
 {
     /// <summary>
     /// Сервис, проверяющий соответствие хеш суммы.
